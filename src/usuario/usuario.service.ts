@@ -18,11 +18,11 @@ async crearUsuario(usuarioData: Partial<Usuario>): Promise<Usuario> {
 
   if (rol === 'Profesor') {
     if (!['TICSW', 'IMAGINE', 'COMIT'].includes(grupoInvestigacion)) {
-      throw new BadRequestException('E.');
+      throw new BadRequestException('Error grupo no valido.');
     }
   } else if (rol === 'Decana') {
     if (!numeroExtension || numeroExtension.toString().length !== 8) {
-      throw new BadRequestException('E');
+      throw new BadRequestException('Error extension debe ser de 8 digitos');
     }
   }
 
@@ -34,7 +34,7 @@ async crearUsuario(usuarioData: Partial<Usuario>): Promise<Usuario> {
  async findUsuarioById(id: number): Promise<Usuario> {
     const usuario = await this.usuarioRepository.findOne({ where: { id } });
     if (!usuario) {
-      throw new NotFoundException('No encontrado.');
+      throw new NotFoundException('Usuario no encontrado');
     }
     return usuario;
   }

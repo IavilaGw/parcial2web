@@ -12,7 +12,6 @@ export class ClaseService {
 
   async crearClase(claseData: Partial<Clase>): Promise<Clase> {
     const { codigo } = claseData;
-
     if (!codigo || codigo.length !== 10) {
       throw new BadRequestException('no tiene 10 caracteres.');
     }
